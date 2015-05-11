@@ -21,10 +21,20 @@ client = Audiosearch::Client.new(
 )
 
 # fetch a show with id 1234
-resp = client.get('/shows/1234')
+show = client.get('/shows/1234')
+# or more idiomatically
+show = client.get_show(1234)
 
-# fetch a specific episode
+# fetch an episode
+episode = client.get('/episodes/5678')
+# or idiomatically
 episode = client.get_episode(5678)
+
+# search
+res = client.search('episodes', { q: 'test' })
+res.results.each do |episode|
+  printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
+end
 
 ```
 

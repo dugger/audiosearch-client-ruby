@@ -151,6 +151,11 @@ module Audiosearch
       return resp.http_resp.body
     end
 
+    def search(type, params)
+      path = '/search/'+type
+      get(path, params)
+    end
+
   end # end Client
 
   # dependent classes

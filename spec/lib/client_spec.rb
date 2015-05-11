@@ -25,13 +25,28 @@ describe "shows" do
     expect(show.title).to eq (show_i.title)
 
   end
+end
 
-  it "should fetch items" do
+describe "episodes" do
+  it "should fetch episodes" do
     client = get_client
     ep = client.get("/episodes/3431")
     ep_i = client.get_episode(3431)
     expect(ep.title).to eq(ep_i.title)
   end 
+
+  it "should search" do
+    client = get_client
+    res = client.search('episodes', { q: 'test' })
+    expect(res.is_success).to be_truthy
+    expect(res.query).to eq 'test'
+    expect(res.page).to eq 1
+    expect(res.results.size).to eq 10
+    res.results.each do |episode|
+      printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
+      expect(episode.audio_files.size).to eq 1
+    end
+  end
 
 end
 
