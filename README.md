@@ -16,8 +16,8 @@ require 'audiosearch'
 client = Audiosearch::Client.new(
   :id     => 'oauth_id',
   :secret => 'oauth_secret',
-  :host   => 'https://www.audiosear.ch/'
-  :debug  => false
+  :host   => 'https://www.audiosear.ch/',
+  :debug  => false,
 )
 
 # fetch a show with id 1234
