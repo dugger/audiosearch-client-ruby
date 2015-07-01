@@ -92,3 +92,20 @@ describe "tastemakers" do
 
 end
 
+describe "trending" do
+
+  it "should fetch trending" do
+    client = get_client
+    res = client.get('/trending')
+    expect(res.is_success).to be_truthy
+    res.each do |trend|
+      printf("[%s] %s\n", trend.trend, trend.twitter_url)
+      trend.related_episodes.each do |episode|
+        printf("-> [%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
+        expect(episode.audio_files.size).to eq 1
+      end
+    end
+  end
+
+end
+
