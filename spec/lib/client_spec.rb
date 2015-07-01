@@ -37,7 +37,7 @@ describe "episodes" do
 
   it "should search" do
     client = get_client
-    res = client.search('episodes', { q: 'test' })
+    res = client.search({ q: 'test' })
     expect(res.is_success).to be_truthy
     expect(res.query).to eq 'test'
     expect(res.page).to eq 1
@@ -46,6 +46,20 @@ describe "episodes" do
       printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
       expect(episode.audio_files.size).to eq 1
     end
+  end
+
+  it "should search with filters" do
+    client = get_client
+    res = client.search({ q: 'test', filters: { network: 'npr' }, })
+    #pp res
+    expect(res.is_success).to be_truthy
+    expect(res.query).to eq 'test'
+    expect(res.total_results).to be >= 1
+    res.results.each do |episode|
+      printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
+      expect(episode.audio_files.size).to eq 1
+      expect(episode.network).to eq 'NPR'
+    end 
   end
 
 end
