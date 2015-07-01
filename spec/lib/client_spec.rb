@@ -61,6 +61,19 @@ describe "episodes" do
       expect(episode.network).to eq 'NPR'
     end 
   end
+end
+
+describe "people" do
+
+  it "should search people" do
+    client = get_client
+    res = client.search({ q: 'debbie' }, 'people')
+    expect(res.is_success).to be_truthy
+    res.results.each do |person|
+      printf("[%s] %s\n", person.id, person.name)
+      expect(person.episodes.size).to be >= 1
+    end
+  end
 
 end
 
