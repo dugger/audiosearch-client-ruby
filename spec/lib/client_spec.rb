@@ -70,7 +70,7 @@ describe "people" do
     res = client.search({ q: 'debbie' }, 'people')
     expect(res.is_success).to be_truthy
     res.results.each do |person|
-      printf("[%s] %s\n", person.id, person.name)
+      printf("[%s] %s %s\n", person.id, person.name, person.urls.self)
       expect(person.episodes.size).to be >= 1
     end
   end
