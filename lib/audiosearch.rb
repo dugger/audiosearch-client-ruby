@@ -45,7 +45,7 @@ module Audiosearch
     attr_accessor :croak_on_404
 
     def version
-      return "1.0.0"
+      return "1.0.1"
     end
 
     def initialize(args)
@@ -151,7 +151,7 @@ module Audiosearch
       return resp.http_resp.body
     end
 
-    def search(type, params)
+    def search(params, type='episodes')
       path = '/search/'+type
       get(path, params)
     end

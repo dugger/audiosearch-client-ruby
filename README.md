@@ -31,7 +31,7 @@ episode = client.get('/episodes/5678')
 episode = client.get_episode(5678)
 
 # search
-res = client.search('episodes', { q: 'test' })
+res = client.search({ q: 'test' })
 res.results.each do |episode|
   printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
 end
