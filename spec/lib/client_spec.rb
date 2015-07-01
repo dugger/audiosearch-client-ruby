@@ -72,6 +72,9 @@ describe "people" do
     res.results.each do |person|
       printf("[%s] %s %s\n", person.id, person.name, person.urls.self)
       expect(person.episodes.size).to be >= 1
+      # fetch specific person
+      p = client.get person.urls.self
+      expect(person.name).to eq p.name
     end
   end
 

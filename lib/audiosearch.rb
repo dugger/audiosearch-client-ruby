@@ -136,7 +136,8 @@ module Audiosearch
     end
 
     def get(path, params={})
-      resp = @agent.get @api_endpoint + path, params
+      url = path.match(/^https?:/) ? path : @api_endpoint + path
+      resp = @agent.get url, params
       @debug and pp(resp)
       return Audiosearch::Response.new resp
     end
