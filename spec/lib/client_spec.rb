@@ -77,3 +77,18 @@ describe "people" do
 
 end
 
+describe "tastemakers" do
+
+  it "should fetch tastemakers" do
+    client = get_client
+    res = client.get('/tastemakers/episodes/5')
+    #pp res
+    expect(res.is_success).to be_truthy
+    res.each do |episode|
+      printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
+      expect(episode.audio_files.size).to eq 1
+    end
+  end
+
+end
+
