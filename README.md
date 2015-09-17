@@ -31,11 +31,19 @@ episode = client.get('/episodes/5678')
 episode = client.get_episode(5678)
 
 # search
-res = client.search({ q: 'test' })
+res = client.search({ q: 'test' }, 'episodes') # type='episodes' is the default - 'shows', 'people' also searchable
 res.results.each do |episode|
   printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
 end
 
+# tastemakers
+recs = client.get_tastemakers({n: 5}) # type: 'episodes' is the default, may also specify 'type=shows'
+
+# trending
+trends = client.get_trending
+
+# person
+person = client.get_person(1578)
 ```
 
 ## Development
