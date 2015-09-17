@@ -157,6 +157,23 @@ module Audiosearch
       get(path, params)
     end
 
+    def get_trending
+      resp = get('/trending/')
+      return resp.http_resp.body
+    end
+
+    def get_tastemakers(params={})
+      type = params.has_key?(:type) ? params[:type] : 'episodes'
+      n = params.has_key?(:n) ? params[:n] : 10
+      resp = get("/tastemakers/#{type}/#{n}")
+      return resp.http_resp.body
+    end
+
+    def get_person(p_id)
+      resp = get('/people/'+p_id.to_s)
+      return resp.http_resp.body
+    end
+
   end # end Client
 
   # dependent classes
