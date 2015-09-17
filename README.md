@@ -37,7 +37,7 @@ res.results.each do |episode|
 end
 
 # tastemakers
-recs = client.get_tastemakers({n: 5}) # type: 'episodes' is the default, may also specify 'type=shows'
+recs = client.get_tastemakers({n: 5}) # type: 'episodes' is the default, may also specify type: 'shows'
 
 # trending
 trends = client.get_trending
