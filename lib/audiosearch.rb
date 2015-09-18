@@ -174,6 +174,12 @@ module Audiosearch
       return resp.http_resp.body
     end
 
+    def get_related(id, params={})
+      type = params.has_key?(:type) ? params[:type] : 'episodes'
+      path = "/#{type}/#{id}/related"
+      get(path, params)
+    end
+
   end # end Client
 
   # dependent classes
