@@ -57,5 +57,5 @@ with the following environment variables set to meaningful values:
 ```
 AS_ID=somestring
 AS_SECRET=sekritstring
-AS_HOST=http://audiosear.ch.dev
+AS_HOST=https://www.audiosear.ch/
 ```
