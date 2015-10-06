@@ -73,7 +73,7 @@ describe "people" do
       printf("[%s] %s %s\n", person.id, person.name, person.urls.self)
       expect(person.episodes.size).to be >= 1
       # fetch specific person
-      p = client.get person.urls.self
+      p = client.get(person.urls.self).http_resp.body.first
       expect(person.name).to eq p.name
     end
   end
@@ -88,8 +88,8 @@ describe "tastemakers" do
     #pp res
     expect(res.is_success).to be_truthy
     res.each do |episode|
-      printf("[%s] %s (%s)\n", episode.id, episode.title, episode.show_title)
-      expect(episode.audio_files.size).to eq 1
+      printf("[%s] %s (%s)\n", episode.episode.id, episode.episode.title, episode.episode.show_title)
+      expect(episode.episode.audio_files.size).to eq 1
     end
   end
 
